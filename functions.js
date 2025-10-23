@@ -44,9 +44,10 @@ function showPage(containerId = "thought-section", page = currentPage) {
         <div class="card h-100 shadow-sm" onclick="openDetail(${thought.id})" style="cursor:pointer;">
           <div class="card-img-wrapper">
             <div class="card-img-spinner">
-              <div class="spinner-border text-primary" role="status">
-                <span class="visually-hidden">Loading image...</span>
+              <div class="spinner-grow spinner-grow-sm text-primary mx-1" role="status">
+                <span class="visually-hidden">Loading...</span>
               </div>
+             
             </div>
             <img src="https://picsum.photos/400/200?random=${thought.id}" 
                  class="card-img-top" 
