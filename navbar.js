@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const navActions = document.getElementById("navActions");
   if (!navActions) return;
-
   const user = JSON.parse(localStorage.getItem("loggedInUser"));
   if (user) {
     navActions.innerHTML = `

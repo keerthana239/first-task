@@ -3,7 +3,7 @@ let thoughts = [];
 let currentPage = 1;
 const postsPerPage = 6;
 
-// -------------------------
+// ---------------------
 // Navbar login/logout setup
 // -------------------------
 function updateNavbar(navActionsId = "navActions") {
