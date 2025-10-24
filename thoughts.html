@@ -92,5 +92,25 @@
     .catch(() => document.getElementById("spinner").innerHTML = `<p class="text-danger text-center">Failed to load thoughts.</p>`);
 </script>
 
+
+<script>
+  // 🚫 Redirect non-logged-in users
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (!user) {
+    // remember where they tried to go
+    localStorage.setItem("redirectAfterLogin", window.location.href);
+    // go to login page
+    window.location.href = "login.html";
+  }
+
+  document.getElementById("logoutBtn").addEventListener("click", () => {
+  localStorage.removeItem("loggedInUser");
+  window.location.href = "index.html"; // ✅ back to home
+});
+</script>
+
+
+
+
 </body>
 </html>

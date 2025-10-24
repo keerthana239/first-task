@@ -95,6 +95,13 @@
   <script src="constants.js"></script>
 
   <script>
+    // Check if user is logged in, redirect to login if not
+    const user = JSON.parse(localStorage.getItem("loggedInUser"));
+    if (!user) {
+      localStorage.setItem("redirectAfterLogin", window.location.href);
+      window.location.href = "login.html";
+    }
+
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
 
@@ -186,6 +193,17 @@
         `;
       });
     }
+
+    function openDetail(id) {
+  const user = JSON.parse(localStorage.getItem("loggedInUser"));
+  if (user) {
+    window.location.href = `thought-detail.html?id=${id}`;
+  } else {
+    localStorage.setItem("redirectAfterLogin", `thought-detail.html?id=${id}`);
+    window.location.href = "login.html";
+  }
+}
+
   </script>
 </body>
 </html>
