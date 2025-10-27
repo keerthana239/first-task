@@ -76,7 +76,12 @@
           <div class="user-info-item"><span class="user-info-label">Weight:</span><span>${userData.weight} kg</span></div>
           <div class="user-info-item"><span class="user-info-label">Address:</span><span>${userData.address.address}, ${userData.address.city}</span></div>
           <div class="user-info-item"><span class="user-info-label">Company:</span><span>${userData.company.name} - ${userData.company.department}</span></div>
-        `;
+          <div class="user-info-item"><span class="user-info-label">University:</span><span>${userData.university}</span></div>
+          <div class="user-info-item"><span class="user-info-label">Website:</span><span>${userData.domain}</span></div>
+        
+
+        
+          `;
       })
       .catch(err => {
         spinner.classList.add('d-none');
