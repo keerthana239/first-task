@@ -17,16 +17,22 @@
       width: 100%;
       border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      background: white;
+    }
+    .spinner-border {
+      width: 1.5rem;
+      height: 1.5rem;
+      display: none;
     }
   </style>
 </head>
 <body>
 
-
-  <!--This section is the visual login card with input fields, submit button, error display, and a signup link.-->
+  <!-- Login Card -->
   <div class="card p-4 login-card">
     <h4 class="text-center mb-3 text-primary">Login to Thoughts Blog</h4>
     <div id="errorMsg" class="text-danger text-center mb-2"></div>
+
     <form id="loginForm">
       <div class="mb-3">
         <label class="form-label">Username</label>
@@ -36,27 +42,42 @@
         <label class="form-label">Password</label>
         <input type="password" id="password" class="form-control" required placeholder="Enter password">
       </div>
-      <button type="submit" class="btn btn-primary w-100">Login</button>
+
+      <button type="submit" id="loginBtn" class="btn btn-primary w-100 d-flex justify-content-center align-items-center">
+        <span id="btnText">Login</span>
+        <div class="spinner-border text-light ms-2" role="status" id="spinner"></div>
+      </button>
     </form>
+
     <p class="mt-3 text-center">Don’t have an account? <a href="signup.html">Sign up</a></p>
   </div>
 
   <script>
-    //Selecting Elements
+    // 🔹 If already logged in → redirect immediately
+    const existingUser = JSON.parse(localStorage.getItem('loggedInUser'));
+    if (existingUser) {
+      window.location.href = 'thoughts.html';
+    }
+
     const form = document.getElementById('loginForm');
     const errorMsg = document.getElementById('errorMsg');
+    const spinner = document.getElementById('spinner');
+    const btnText = document.getElementById('btnText');
+    const loginBtn = document.getElementById('loginBtn');
 
-    //Adding Submit Event Listener
+    // 🔹 Submit handler
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       errorMsg.textContent = '';
 
-      //Get Input Values
       const username = document.getElementById('username').value.trim();
       const password = document.getElementById('password').value.trim();
 
+      // Show spinner
+      spinner.style.display = 'inline-block';
+      btnText.textContent = 'Logging in...';
+      loginBtn.disabled = true;
 
-      //sending login request
       try {
         const res = await fetch('https://dummyjson.com/auth/login', {
           method: 'POST',
@@ -64,13 +85,10 @@
           body: JSON.stringify({ username, password })
         });
 
-
-        //handling response Converts the server response to a JavaScript object.
         const data = await res.json();
 
-
-        //if Login Success
         if (res.ok) {
+          // Save login info
           localStorage.setItem('loggedInUser', JSON.stringify(data));
           const redirect = localStorage.getItem('redirectAfterLogin') || 'thoughts.html';
           localStorage.removeItem('redirectAfterLogin');
@@ -80,6 +98,11 @@
         }
       } catch (err) {
         errorMsg.textContent = 'Something went wrong. Please try again.';
+      } finally {
+        // Hide spinner
+        spinner.style.display = 'none';
+        btnText.textContent = 'Login';
+        loginBtn.disabled = false;
       }
     });
   </script>
