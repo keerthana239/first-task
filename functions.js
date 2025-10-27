@@ -17,12 +17,16 @@ function updateNavbar(navActionsId = "navActions") {
     navActions.innerHTML = `
       <div class="dropdown">
         <img src="${avatarUrl}" alt="Profile" class="profile-avatar" onclick="window.location.href='profile.html'" data-bs-toggle="dropdown" 
-             style="width:40px;height:40px;border-radius:50%;cursor:pointer;">
+             style="width:40px;height:40px;border-radius:20%;cursor:pointer;">
+
+             
         <ul class="dropdown-menu dropdown-menu-end">
           <li><a class="dropdown-item" href="#" id="viewProfileBtn">View Profile</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item text-danger" href="#" id="logoutBtn">Logout</a></li>
         </ul>
+
+        
       </div>`;
 
     // Logout
