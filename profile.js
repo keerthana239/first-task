@@ -3,7 +3,7 @@ function updateNavbar(navActionsId = "navActions") {
   const user = JSON.parse(localStorage.getItem("loggedInUser"));
   if (user) {
     // Generate avatar URL or use default
-    const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.username)}&background=0D6EFD&color=fff`;
+    const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(user.username)}&background=0D6EFD&color=ff0`;
 
     // show avatar + dropdown; clicking avatar or View Profile goes to profile.html
     navActions.innerHTML = `

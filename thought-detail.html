@@ -54,6 +54,10 @@
           <li class="nav-item"><a class="nav-link" href="thoughts.html">Thoughts</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+
+          <button class="btn-theme-toggle theme-toggle" onclick="themeController.toggleTheme()">
+    🔆
+</button>
         </ul>
       </div>
       <div id="navActions" class="d-flex ms-3"></div>
@@ -220,7 +224,8 @@ fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
   </div>
 </div>
 
-
+<script src="js/theme-controller.js"></script>
+<link rel="stylesheet" href="css/theme.css">
 
 </body>
 </html>

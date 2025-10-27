@@ -118,11 +118,16 @@
         <ul class="navbar-nav ms-auto">
           <li class="nav-item"><a class="nav-link active" href="thoughts.html">Thoughts</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+       
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+        <button class="btn-theme-toggle theme-toggle" onclick="themeController.toggleTheme()">
+    🔆
+</button>
         </ul>
       </div>
       <!-- 👇 Login / Signup or Profile -->
       <div id="navActions" class="d-flex ms-3"></div>
+     
     </div>
   </nav>
 
@@ -175,6 +180,7 @@
 });
 </script>
 <script src="liquid.js"></script>
-
+<script src="js/theme-controller.js"></script>
+<link rel="stylesheet" href="css/theme.css">
 </body>
 </html>

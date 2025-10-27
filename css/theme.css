@@ -1,0 +1,115 @@
+:root[data-theme="light"] {
+    --background-primary: #ffffff;
+    --background-secondary: #f8f9fa;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --accent-color: #0d6efd;
+    --border-color: #dee2e6;
+    --card-background: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --navbar-bg: #ffffff;
+    --navbar-text: #212529;
+    --comment-bg: #ffffff;
+    --comment-border: #dee2e6;
+    --link-color: #0d6efd;
+}
+
+:root[data-theme="dark"] {
+    --background-primary: #121212;
+    --background-secondary: #1e1e1e;
+    --text-primary: #ffffff;
+    --text-secondary: #adb5bd;
+    --accent-color: #3d8bfd;
+    --border-color: #2d2d2d;
+    --card-background: #1e1e1e;
+    --shadow-color: rgba(255, 255, 255, 0.1);
+    --navbar-bg: #1e1e1e;
+    --navbar-text: #ffffff;
+    --comment-bg: #1e1e1e;
+    --comment-border: #2d2d2d;
+    --link-color: #3d8bfd;
+}
+
+/* Base styles using theme variables */
+body {
+    background-color: var(--background-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Navbar styling */
+.navbar {
+    background-color: var(--navbar-bg) !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.navbar-light .navbar-nav .nav-link,
+.navbar-light .navbar-brand {
+    color: var(--navbar-text) !important;
+}
+
+/* Common elements styling */
+.card {
+    background-color: var(--card-background);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+/* Comment styling */
+.comment-item {
+    background-color: var(--comment-bg) !important;
+    border-color: var(--comment-border) !important;
+    color: var(--text-primary);
+}
+
+/* Links */
+a {
+    color: var(--link-color);
+}
+
+a:hover {
+    color: var(--accent-color);
+}
+
+/* Text colors */
+.text-primary {
+    color: var(--accent-color) !important;
+}
+
+.text-secondary {
+    color: var(--text-secondary) !important;
+}
+
+/* Button styling */
+.btn-theme-toggle {
+    background-color: var(--background-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-theme-toggle:hover {
+    background-color: var(--accent-color);
+    color: var(--background-primary);
+}
+
+/* Bootstrap overrides */
+.bg-white {
+    background-color: var(--background-primary) !important;
+}
+
+.bg-light {
+    background-color: var(--background-secondary) !important;
+}
+
+.navbar-light {
+    background-color: var(--navbar-bg) !important;
+}
+
+/* Transitions */
+* {
+    transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}

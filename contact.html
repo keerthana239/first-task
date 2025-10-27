@@ -37,6 +37,9 @@
           <li class="nav-item"><a class="nav-link" href="thoughts.html">Thoughts</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link active" href="contact.html">Contact</a></li>
+          <button class="btn-theme-toggle theme-toggle" onclick="themeController.toggleTheme()">
+    🔆
+</button>
         </ul>
       </div>
       <div id="navActions" class="d-flex ms-3"></div>
@@ -45,7 +48,7 @@
 
   <div class="container py-5">
     <h2 class="text-center text-primary fw-bold mb-4">Contact Us 📬</h2>
-    <p class="text-center text-secondary mb-4">We’d love to hear from you! Reach out using the form below.</p>
+    <p class="text-center text-dark mb-4">We’d love to hear from you! Reach out using the form below.</p>
 
     <form class="mx-auto" style="max-width:500px;">
       <div class="mb-3">
@@ -89,5 +92,8 @@
 </div>
 
 <script src="liquid.js"></script>
+
+<script src="js/theme-controller.js"></script>
+<link rel="stylesheet" href="css/theme.css">
 </body>
 </html>
