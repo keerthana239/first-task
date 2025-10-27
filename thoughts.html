@@ -36,9 +36,56 @@
     .card-img-top.loaded {
       opacity: 1;
     }
+    .profile-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      object-fit: cover;
+      border: 2px solid #0a0a0b;
+    }
+    .user-details img {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+    .user-info-item {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+      align-items: center;
+    }
+    .user-info-label {
+      font-weight: bold;
+      min-width: 100px;
+    }
   </style>
 </head>
 <body>
+  
+  <!-- User Profile Modal -->
+  <div class="modal fade" id="userProfileModal" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Profile Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center">
+          <div id="profileSpinner" class="spinner-border text-primary mb-3"></div>
+          <div id="userDetails" class="user-details d-none">
+            <!-- Content will be dynamically added here -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  
   <!-- 🌐 Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
     <div class="container">
@@ -61,7 +108,7 @@
     </div>
   </nav>
 
-  <!--🧠 Thoughts Section -->
+  <!-- 🧠 Thoughts Section -->
   <div class="container mt-4">
     <h2 class="text-center mb-4">💭 My Thoughts</h2>
     <div id="spinner" class="spinner-container">
@@ -108,9 +155,6 @@
   window.location.href = "index.html"; // ✅ back to home
 });
 </script>
-
-
-
 
 </body>
 </html>

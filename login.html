@@ -21,6 +21,9 @@
   </style>
 </head>
 <body>
+
+
+  <!--This section is the visual login card with input fields, submit button, error display, and a signup link.-->
   <div class="card p-4 login-card">
     <h4 class="text-center mb-3 text-primary">Login to Thoughts Blog</h4>
     <div id="errorMsg" class="text-danger text-center mb-2"></div>
@@ -39,16 +42,21 @@
   </div>
 
   <script>
+    //Selecting Elements
     const form = document.getElementById('loginForm');
     const errorMsg = document.getElementById('errorMsg');
 
+    //Adding Submit Event Listener
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       errorMsg.textContent = '';
 
+      //Get Input Values
       const username = document.getElementById('username').value.trim();
       const password = document.getElementById('password').value.trim();
 
+
+      //sending login request
       try {
         const res = await fetch('https://dummyjson.com/auth/login', {
           method: 'POST',
@@ -56,8 +64,12 @@
           body: JSON.stringify({ username, password })
         });
 
+
+        //handling response Converts the server response to a JavaScript object.
         const data = await res.json();
 
+
+        //if Login Success
         if (res.ok) {
           localStorage.setItem('loggedInUser', JSON.stringify(data));
           const redirect = localStorage.getItem('redirectAfterLogin') || 'thoughts.html';
@@ -73,6 +85,3 @@
   </script>
 </body>
 </html>
-
-
-
