@@ -24,9 +24,32 @@
       height: 1.5rem;
       display: none;
     }
+
+
+    #liquid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  background: linear-gradient(120deg, #2c3e50, #4ca1af);
+  filter: blur(50px) brightness(1.3);
+}
+
+
+
   </style>
 </head>
 <body>
+
+
+
+  <canvas id="liquid"></canvas>
+
+
+
+
 
   <!-- Login Card -->
   <div class="card p-4 login-card">
@@ -106,5 +129,10 @@
       }
     });
   </script>
+
+
+<script src="liquid.js"></script>
+
+
 </body>
 </html>

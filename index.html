@@ -18,14 +18,27 @@ color: rgb(107, 218, 243);
 text-align: center ;
 } 
 
-     
+#liquid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* keep it behind everything */
+  background: linear-gradient(120deg, #2c3e50, #4ca1af);
+  filter: blur(50px) brightness(1.3);
+  opacity: 0.9;
+}
+
+
+ 
   </style>
 </head>
 <body>
 
 
 
-
+<canvas id="liquid"></canvas>
 
 
   <!-- User Profile Modal -->
@@ -123,5 +136,7 @@ text-align: center ;
     });
   </script>
 
+
+<script src="liquid.js"></script>
 </body>
 </html>

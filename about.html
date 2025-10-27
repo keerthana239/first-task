@@ -14,13 +14,30 @@ left: 0;
 bottom: 0;
 width: 100%;
 height:50px;
-background-color: rgb(173, 67, 230);
-color: rgb(107, 218, 243);
+background-color: rgb(246, 243, 248);
+color: rgb(5, 9, 10);
 text-align: center ;
 } 
+
+#liquid {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* keep it behind everything */
+  background: linear-gradient(120deg, #2c3e50, #4ca1af);
+  filter: blur(50px) brightness(1.3);
+  opacity: 0.9;
+}
+
   </style>
 </head>
 <body>
+
+  <canvas id="liquid"></canvas>
+
+
   <!-- 🌐 Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
     <div class="container">
@@ -101,5 +118,7 @@ text-align: center ;
     });
     
   </script>
+
+  <script src="liquid.js"></script>
 </body>
 </html>
