@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap 5 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Javascript project</title>
+  <style>
+    :root{
+      --bg: #f3f4f6;
+      --text: #ecf0f8;
+      --card-bg: #ffffff;
+      --navbar-bg: #b4bdd2;
+      --navbar-text: #fffefe;
+      --profile-bg: #f2f8fc;
+      --footer-bg: #eef1f9;
+      --upload-border: rgb(40, 37, 37);
+    }
+
+    body{
+      font-family: Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      /*padding: 30px;*/
+    }
+    /* Upload box */
+    .upload-box {
+      border: 2px dashed var(--upload-border);
+      border-radius: 6px;
+      padding: 20px;
+      text-align: center;
+      color: #666;
+      min-height: 200px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    textarea {
+      min-height: 200px;
+    }
+    /* Profile card spacing */
+    
+    /* Navbar brand image */
+    .brand-logo {
+      height: 48px;
+      width: auto;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    #demo{
+      padding-top:0px;
+      padding-bottom: 40px;
+    }
+    #tb{
+      text-align: center;
+      background-color: azure;
+      width:900px;
+      height:50px;
+    }
+    .footer {
+   position: fixed;
+   left: 0;
+   bottom: 0;
+   width: 100%;
+   background-color: rgb(12, 7, 7);
+   color: white;
+   text-align: center;
+}
+.dark-mode {
+  background-color: black;
+  color: white;
+
+}
+
+/* Ensure marquee heading is white in dark mode (overrides inline color) */
+.dark-mode marquee h1,
+.dark-mode marquee {
+  color: #ffffff !important;
+}
+.dark-mode 
+
+</style>
+</head>
+<body>  
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark container-fluid mb-4">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#"><img src="download.webp" alt="Logo" class="brand-logo"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+          <li class="nav-item"><button class="btn btn-sm btn-outline-light ms-2" onclick="myFunction()">DarkMode</button></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+  <!--main-->
+ <marquee><h1 style="color:#16141f" > AI Training...</h1></marquee>
+
+  </div>
+ <!-- Carousel -->
+<div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+  <!-- Indicators/dots -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+  </div>
+  <!-- The slideshow/carousel -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="la.jpg" alt="Los Angeles" class="d-block" style="width:100%" >
+      <div class="carousel-caption">
+        <h3>AI in Daily Lif</h3>
+        <p>From phones to cars, AI quietly powers our everyday experiences.</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="chicago.jpg" alt="Chicago" class="d-block" style="width:100%">
+      <div class="carousel-caption">
+        <h3>AI Training Process</h3>
+        <p>A glimpse into how machines learn from data—step by step, layer by layer.</p>
+      </div> 
+    </div>
+    <div class="carousel-item">
+      <img src="ny.jpg" alt="New York" class="d-block" style="width:100%">
+      <div class="carousel-caption">
+        <h3>Human vs Machine Learning</h3>
+        <p>A side-by-side look at how AI mimics human thinking through algorithms. </p>
+      </div>  
+    </div>
+  </div>
+  
+  <!-- Left and right controls/icons -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+ </div>
+
+
+  <!-- Left and Right Columns -->
+  <div  class="container " >
+    <div class="row">
+
+      <!-- Left Column -->
+      <div class="col-md-6 col-sm-12">
+        <!-- Profile Card -->
+        <div class="card mb-3 p-2 d-flex gap-2 align-items-center profile ">
+          <img src="Screenshot 2025-09-29 114518.png" class="rounded-circle" width="50" alt="Avatar">
+          <div>
+            <strong>John Doe</strong><br>
+            <span>Trainee</span>
+          </div>
+        </div>
+        
+        <!-- Upload Card -->
+        <div class="card mb-3" >
+          <div class="card-header">Upload Image</div>
+          <input type="file" id="fileInput" hidden>
+          <div class="card-body upload-box" id="uploadBox">
+            Drag and drop or select image to upload
+          </div>
+          <div class="card-footer text-end">
+            <button class="btn btn-primary">Upload</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="col-md-6 col-sm-12">
+
+        <!-- Tasks Card -->
+        <div class="card mb-3">
+          <div class="card-header">Tasks</div>
+          <div class="card-body">
+            <ul class="list-unstyled" id="taskList">
+              <li><input type="checkbox" checked> Complete onboarding</li>
+              <li><input type="checkbox" checked> Read company policies</li>
+              <li><input type="checkbox"> Set up development environment</li>
+              <li><input type="checkbox"> Meet the team</li>
+            </ul>
+            <button class="btn btn-primary mt-2" id="addTaskBtn">Add Task</button>
+          </div>
+        </div>
+        
+        <!-- Notes Card -->
+        <div class="card mb-3">
+          <div class="card-header">Notes</div>
+          <div class="card-body">
+            <textarea class="form-control" placeholder="Write notes..." id="notesArea"></textarea>
+            <button class="btn btn-primary mt-2" id="saveNotesBtn">Save Notes</button>
+          </div>
+        </div>
+      </div>
+      </div>
+  </div>
+  <!-- Bootstrap 5 JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" ></script>
+  <!-- JavaScript for Interactivity -->
+  <script>
+    function myFunction() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
+    // Upload Box Functionality
+    const uploadBox = document.getElementById("uploadBox");
+    const fileInput = document.getElementById("fileInput");
+
+    // Click to open file dialog
+    uploadBox.addEventListener("click", () => fileInput.click());
+
+    // When file selected to display file name
+    fileInput.addEventListener("change", ( ) => {
+      const file = fileInput.files[0];
+      if (file) uploadBox.textContent = `Selected: ${file.name}`;
+    });
+    const uploadBtn = document.querySelector(".card-footer .btn");
+
+//when upload button is clicked it returns a message that file is uploaded successfully
+uploadBtn.addEventListener("click", () => {
+  if (fileInput.files[0]) {
+    alert(`File "${fileInput.files[0].name}" uploaded successfully!`);
+    fileInput.value = "";                   // optional: reset input
+    uploadBox.textContent = "Drag and drop or select image to upload"; // reset display
+  } else {
+    alert("Please select a file first!");
+  }
+});
+
+    //  Add Task Functionality
+    const addTaskBtn = document.getElementById("addTaskBtn");
+    const taskList = document.getElementById("taskList");
+//when add task button is clicked it prompts user to enter a new task and adds it to the list 
+    addTaskBtn.addEventListener("click", () => {
+      const taskName = prompt("Enter a new task:");
+      if (taskName) {
+        const li = document.createElement("li");
+        li.innerHTML = `<input type="checkbox"> ${taskName}`;
+        taskList.appendChild(li);
+      }
+    });
+
+    //  Saving Notes 
+    const notesArea = document.getElementById("notesArea");
+    const saveNotesBtn = document.getElementById("saveNotesBtn");
+
+    // Load saved note from localStorage
+    notesArea.value = localStorage.getItem("userNote") || "";
+
+    // Save note
+    saveNotesBtn.addEventListener("click", () => {
+      localStorage.setItem("userNote", notesArea.value);
+      alert("Notes saved successfully!");
+    });
+  </script>
+  <!-- Footer -->
+  <footer class="bg-dark text-light mt-5" >
+    <div class="container-fluid py-4">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>Kyrentha</h5>
+          <p class="small">Building great training experiences with AI — ©2025 Kyrentha
+</p>
+          <div class="mt-2">
+            <span id="todayDate" class="small text-light"></span>
+          </div>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <ul class="list-unstyled">
+            <li><a class="text-light text-decoration-none" href="#">Privacy</a></li>
+            <li><a class="text-light text-decoration-none" href="#">Terms</a></li>
+            <li><a class="text-light text-decoration-none" href="#">Contact</a></li>
+          </ul>
+          
+        </div>
+      </div>
+    </div>
+  </footer>
+  <script>
+    // Simple inline script to set today's date when the page opens
+    ( function(){
+      const el = document.getElementById('todayDate');
+      if (!el) return;
+      el.textContent = " " + new Date().toLocaleDateString();
+    } ) ();
+  </script>
+</body>
+</html>
