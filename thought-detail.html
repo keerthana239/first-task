@@ -13,6 +13,21 @@
       margin-bottom: 10px;
       background: #fff;
     }
+    .comment-row {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .comment-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      flex: 0 0 48px;
+      object-fit: cover;
+    }
+    .comment-body {
+      flex: 1 1 auto;
+    }
     .spinner-container {
       display: flex;
       justify-content: center;
@@ -25,8 +40,8 @@
   <!-- 🌐 Navbar -->
   <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
     <div class="container">
-      <a class="navbar-brand fw-bold text-primary">
-        <img src="Screenshot 2025-10-10 145839.png" alt="Logo" style="width:40px;" class="rounded-pill me-2">
+      <a class="navbar-brand fw-bold text-primary" href="index.html">
+        <img src="logo.jpg" alt="Logo" style="width:40px;" class="rounded-pill me-2">
         Thoughts Blog
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -39,10 +54,7 @@
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
         </ul>
       </div>
-      <div class="d-flex ms-lg-3 mt-2 mt-lg-0">
-        <button class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">Signup</button>
-      </div>
+      <div id="navActions" class="d-flex ms-3"></div>
     </div>
   </nav>
 
@@ -78,71 +90,46 @@
   </div>
 
   <footer class="bg-white text-center py-3 mt-5 shadow-sm">© 2025 Thoughts Blog ❤️🧿</footer>
-  <!-- Login & Signup Modals -->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="loginModalLabel">Login</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="loginForm">
-          <div class="mb-3">
-            <label class="form-label">Email address</label>
-            <input type="email" class="form-control" id="loginEmail" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Password</label>
-            <input type="password" class="form-control" id="loginPassword" required>
-          </div>
-          <button type="submit" class="btn btn-primary w-100">Login</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title fw-bold" id="signupModalLabel">Signup</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <form id="signupForm">
-          <div class="mb-3">
-            <label class="form-label">Name</label>
-            <input type="text" class="form-control" id="signupName" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input type="email" class="form-control" id="signupEmail" required>
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Password</label>
-            <input type="password" class="form-control" id="signupPassword" required>
-          </div>
-          <button type="submit" class="btn btn-primary w-100">Create Account</button>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="constants.js"></script>
 
   <script>
     const params = new URLSearchParams(window.location.search);
     const id = params.get("id");
 
     const detailSection = document.getElementById("detail-section");
-    const detailSpinner = document.getElementById("detail-spinner");
     const commentSection = document.getElementById("comment-section");
     const commentForm = document.getElementById("commentForm");
+    const navActions = document.getElementById("navActions");
 
     let commentsData = [];
+
+    // ✅ Maintain logged-in state from thoughts.html
+    function setupNavbar() {
+      const user = JSON.parse(localStorage.getItem("loggedInUser"));
+      if (user) {
+        navActions.innerHTML = `
+          <div class="dropdown">
+            <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown">
+              👋 ${user.username}
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item text-danger" href="#" id="logoutBtn">Logout</a></li>
+            </ul>
+          </div>`;
+        document.getElementById("logoutBtn").addEventListener("click", () => {
+          localStorage.removeItem("loggedInUser");
+          window.location.href = "thoughts.html";
+        });
+      } else {
+        navActions.innerHTML = `
+          <button class="btn btn-outline-primary me-2" onclick="window.location.href='login.html'">Login</button>
+          <button class="btn btn-primary" onclick="window.location.href='signup.html'">Signup</button>`;
+      }
+    }
+
+    setupNavbar();
 
     // 🧠 Load thought details
     fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
@@ -157,7 +144,6 @@
             onload="this.previousElementSibling.remove(); this.classList.remove('d-none');">
           <h3 class="text-capitalize mb-3">${thought.title}</h3>
           <p>${thought.body}</p>
-          
         `;
       });
 
@@ -169,7 +155,7 @@
         renderComments();
       });
 
-    // 📝 Add comment
+    // ➕ Add comment
     commentForm.addEventListener("submit", e => {
       e.preventDefault();
       const newComment = {
@@ -182,30 +168,24 @@
       commentForm.reset();
     });
 
+    // 🧩 Render all comments
     function renderComments() {
       commentSection.innerHTML = "";
       commentsData.forEach(comment => {
+        const avatarUrl = `https://ui-avatars.com/api/?name=${encodeURIComponent(comment.email || 'U')}&background=0D6EFD&color=fff&rounded=true&size=128`;
         commentSection.innerHTML += `
           <div class="comment-item">
-            <h6>${comment.name} <small class="text-muted">(${comment.email})</small></h6>
-            <p>${comment.body}</p>
+            <div class="comment-row">
+              <img class="comment-avatar" src="${avatarUrl}" alt="avatar">
+              <div class="comment-body">
+                <h6 class="mb-1">${comment.name} <small class="text-muted">(${comment.email})</small></h6>
+                <p class="mb-0">${comment.body}</p>
+              </div>
+            </div>
           </div>
         `;
       });
     }
-    document.getElementById('loginForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  alert('Login successful (demo only)');
-  const modal = bootstrap.Modal.getInstance(document.getElementById('loginModal'));
-  modal.hide();
-});
-
-document.getElementById('signupForm').addEventListener('submit', function(e){
-  e.preventDefault();
-  alert('Account created successfully (demo only)');
-    const modal = bootstrap.Modal.getInstance(document.getElementById('signupModal'));
-  modal.hide();
-});
   </script>
 </body>
 </html>

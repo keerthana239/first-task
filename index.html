@@ -3,246 +3,114 @@
 <head>
   <meta charset="UTF-8" />
   <title>💭 Thoughts Blog</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="icon" type="image/png" href="seo.png">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <style>
     body { background-color: #fafafa; }
+    .user-info img { object-fit: cover; }
     .card-img-top { height: 180px; object-fit: cover; }
-    .comment-item {
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      padding: 12px;
-      margin-bottom: 10px;
-      background: #fff;
-    }
-    .back-btn { cursor: pointer; color: #007bff; text-decoration: underline; }
+    .pagination { justify-content: center; margin-top: 30px; }
+    .spinner-container { display: flex; justify-content: center; align-items: center; height: 200px; }
   </style>
 </head>
 <body>
-
   <!-- 🌐 Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
     <div class="container">
-      <a class="navbar-brand fw-bold text-primary">
-        <img src="Screenshot 2025-10-10 145839.png" alt="Logo" style="width:40px;" class="rounded-pill">
+      <a class="navbar-brand fw-bold text-primary" href="thoughts.html">
+        <img src="logo.jpg" alt="Logo" style="width:40px;" class="rounded-pill me-2">
+        Thoughts Blog
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ms-auto">
-          
-          <li class="nav-item"><a class="nav-link" href="thoughts.html">Thoughts</a></li>
+          <li class="nav-item"><a class="nav-link active" href="thoughts.html">Thoughts</a></li>
           <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
           <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
         </ul>
-
-        <div class="d-flex ms-lg-3 mt-2 mt-lg-0">
-          <button class="btn btn-outline-primary me-2" data-bs-toggle="modal" data-bs-target="#loginModal">Login</button>
-          <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#signupModal">Signup</button>
-        </div>
       </div>
+      <div id="navActions" class="d-flex ms-3"></div>
     </div>
   </nav>
 
   <!-- 🧠 Thoughts Section -->
   <div class="container mt-4">
     <h2 class="text-center mb-4">💭 My Thoughts</h2>
-
-    <!-- 🔹 Thoughts list -->
-    <div id="thought-section" class="row g-4"></div>
-
-    <!-- 🔹 Thought detail section -->
-    <div id="detail-section" class="d-none">
-      <span class="back-btn mb-3 d-block" onclick="showThoughts()">← Back to all thoughts</span>
-      <div id="thought-detail" class="card mb-4 shadow-sm p-4 text-center"></div>
-
-      <h4>💬 Comments</h4>
-      <div id="comment-section" class="mt-3"></div>
-
-      <!-- ✍️ Add new comment -->
-      <div class="card mt-4 shadow-sm p-3">
-        <h5>Add a Comment</h5>
-        <form id="commentForm">
-          <div class="mb-3">
-            <input type="text" id="commentName" class="form-control" placeholder="Your Name" required>
-          </div>
-          <div class="mb-3">
-            <input type="email" id="commentEmail" class="form-control" placeholder="Your Email" required>
-          </div>
-          <div class="mb-3">
-            <textarea id="commentBody" class="form-control" placeholder="Your Comment" rows="3" required></textarea>
-          </div>
-          <button type="submit" class="btn btn-primary w-100">Post Comment</button>
-        </form>
-      </div>
+    <div id="spinner" class="spinner-container">
+      <div class="spinner-border text-primary" role="status"><span class="visually-hidden">Loading...</span></div>
     </div>
+    <div id="thought-section" class="row g-4 d-none"></div>
+    <nav><ul id="pagination" class="pagination"></ul></nav>
   </div>
 
-  <!--  Footer -->
   <footer class="bg-white text-center py-3 mt-5 shadow-sm">© 2025 Thoughts Blog ❤️🧿</footer>
 
-  <!--  Login Modal -->
-  <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title fw-bold" id="loginModalLabel">Login</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="loginForm">
-            <div class="mb-3">
-              <label class="form-label">Email address</label>
-              <input type="email" class="form-control" id="loginEmail" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Password</label>
-              <input type="password" class="form-control" id="loginPassword" required>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Login</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- 🧾 Signup Modal -->
-  <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="signupModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title fw-bold" id="signupModalLabel">Signup</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form id="signupForm">
-            <div class="mb-3">
-              <label class="form-label">Name</label>
-              <input type="text" class="form-control" id="signupName" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Email</label>
-              <input type="email" class="form-control" id="signupEmail" required>
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Password</label>
-              <input type="password" class="form-control" id="signupPassword" required>
-            </div>
-            <button type="submit" class="btn btn-primary w-100">Create Account</button>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="constants.js"></script>
 
   <script>
     const thoughtsContainer = document.getElementById("thought-section");
-    const detailSection = document.getElementById("detail-section");
-    const thoughtDetail = document.getElementById("thought-detail");
-    const commentSection = document.getElementById("comment-section");
-    const commentForm = document.getElementById("commentForm");
+    const spinner = document.getElementById("spinner");
+    const pagination = document.getElementById("pagination");
 
-    let currentThoughtId = null;
-    let commentsData = [];
+    let thoughts = [];
+    let currentPage = 1;
+    const postsPerPage = 3;
 
-    // Load all thoughts
-    fetch("https://jsonplaceholder.typicode.com/posts")
+    // ✅ Fetch posts
+    fetch(`${BASE_URL}/posts`)
       .then(res => res.json())
-      .then(thoughts => {
-        thoughts.forEach(thought => {
-          const randomImage = `https://picsum.photos/400/200?random=${thought.id}`;
-          const card = `
-            <div class="col-md-4">
-              <div class="card h-100 shadow-sm" style="cursor:pointer;" onclick="showDetail(${thought.id})">
-                <img src="${randomImage}" class="card-img-top" alt="Thought image">
-                <div class="card-body">
-                  <small class="text-muted">User ${thought.userId}</small>
-                  <h5 class="card-title mt-2 text-capitalize">${thought.title}</h5>
-                  <p class="card-text text-secondary">${thought.body}</p>
-                </div>
+      .then(data => {
+        thoughts = data.posts ? data.posts.slice(0, 30) : data.slice(0, 30);
+        spinner.classList.add("d-none");
+        thoughtsContainer.classList.remove("d-none");
+        showPage(currentPage);
+        setupPagination();
+      })
+      .catch(() => spinner.innerHTML = `<p class="text-danger text-center">Failed to load thoughts.</p>`);
+
+    function showPage(page) {
+      thoughtsContainer.innerHTML = "";
+      const start = (page - 1) * postsPerPage;
+      const end = start + postsPerPage;
+      thoughts.slice(start, end).forEach(thought => {
+        thoughtsContainer.innerHTML += `
+          <div class="col-md-4">
+            <div class="card h-100 shadow-sm" onclick="openDetail(${thought.id})" style="cursor:pointer;">
+              <img src="https://picsum.photos/400/200?random=${thought.id}" class="card-img-top" alt="Image">
+              <div class="card-body">
+                <h5 class="card-title">${thought.title}</h5>
+                <p class="card-text text-secondary">${thought.body}</p>
               </div>
             </div>
-          `;
-          thoughtsContainer.innerHTML += card;
-        });
-      })
-      .catch(() => {
-        thoughtsContainer.innerHTML = `<p class="text-danger text-center"> Failed to load thoughts.</p>`;
-      });
-
-    // Show single thought + comments
-    function showDetail(id) {
-      currentThoughtId = id;
-      thoughtsContainer.classList.add("d-none");
-      detailSection.classList.remove("d-none");
-      thoughtDetail.innerHTML = `<p>Loading thought details...</p>`;
-      commentSection.innerHTML = "";
-
-      fetch(`https://jsonplaceholder.typicode.com/posts/${id}`)
-        .then(res => res.json())
-        .then(thought => {
-          const randomImage = `https://picsum.photos/600/250?random=${thought.id}`;
-          thoughtDetail.innerHTML = `
-            <img src="${randomImage}" class="img-fluid mb-3 rounded" alt="Thought image">
-            <h3 class="text-capitalize mb-3">${thought.title}</h3>
-            <p>${thought.body}</p>
-            
-          `;
-        });
-
-      fetch(`https://jsonplaceholder.typicode.com/comments?postId=${id}`)
-        .then(res => res.json())
-        .then(comments => {
-          commentsData = comments;
-          renderComments();
-        });
-    }
-
-    //  Add comment locally
-    commentForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-      const newComment = {
-        name: document.getElementById("commentName").value,
-        email: document.getElementById("commentEmail").value,
-        body: document.getElementById("commentBody").value
-      };
-      commentsData.unshift(newComment);
-      renderComments();
-      commentForm.reset();
-    });
-
-    // 💬 Render comments
-    function renderComments() {
-      commentSection.innerHTML = "";
-      commentsData.forEach(comment => {
-        commentSection.innerHTML += `
-          <div class="comment-item">
-            <h6>${comment.name} <small class="text-muted">(${comment.email})</small></h6>
-            <p>${comment.body}</p>
-          </div>
-        `;
+          </div>`;
       });
     }
 
-    // 🔙 Go back
-    function showThoughts() {
-      detailSection.classList.add("d-none");
-      thoughtsContainer.classList.remove("d-none");
+    function setupPagination() {
+      const totalPages = Math.ceil(thoughts.length / postsPerPage);
+      pagination.innerHTML = "";
+      for (let i = 1; i <= totalPages; i++) {
+        pagination.innerHTML += `
+          <li class="page-item ${i === currentPage ? 'active' : ''}">
+            <a class="page-link" href="#" onclick="changePage(${i})">${i}</a>
+          </li>`;
+      }
     }
 
-    // Demo modals
-    document.getElementById('loginForm').addEventListener('submit', e => {
-      e.preventDefault();
-      alert('Login successful (demo only)');
-      bootstrap.Modal.getInstance(document.getElementById('loginModal')).hide();
-    });
-    document.getElementById('signupForm').addEventListener('submit', e => {
-      e.preventDefault();
-      alert('Account created successfully (demo only)');
-      bootstrap.Modal.getInstance(document.getElementById('signupModal')).hide();
-    });
+    function changePage(page) {
+      currentPage = page;
+      showPage(page);
+      setupPagination();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ✅ Fixed here
+    function openDetail(id) {
+      window.location.href = `thought-detail.html?id=${id}`;
+    }
   </script>
 </body>
 </html>
