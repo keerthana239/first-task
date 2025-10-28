@@ -1,0 +1,177 @@
+* {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #f7f7f7;
+      color: #333;
+    }
+    /* Navbar */
+    .navbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: left;
+      padding: 30px ;
+      background: #2c2f36;
+      color: white;
+      height:auto;
+      width:100%;
+      flex-wrap: wrap;
+    }
+    .navbar .logo {
+      font-weight: bold;
+      font-size: 2rem;
+    }
+    .navbar ul {
+      display: flex;
+      list-style: none;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .navbar ul li a {
+       color: white;
+        text-decoration: none;
+        font-size: 16px;
+       }
+    /* Main section */
+    .main {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      padding: 20px;
+      margin: 10px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      flex-wrap: wrap; /* makes it responsive without media query */
+      gap: 20px;
+      height:400px;
+      width:1450px;
+      max-width:1600px;
+    }
+    .main-text {
+      font-size: 36px;
+      margin:10px;
+      font-weight: bold;
+    }
+    .main img {
+      width:200px;
+      height:auto;
+    }
+    .container {
+      display: flex;
+      gap: 20px;
+      margin: 20px;
+      flex-wrap: wrap;
+      width:100%; /* auto wrap on small screens */
+    }
+    .left,
+    .right {
+      flex: 1;
+      min-width: 300px; /* ensures wrap when too small */
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    /* Card styling */
+    .card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      width:100%;
+    }
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .profile img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #ccc;
+    }
+    /* Upload */
+    .upload-box {
+      border: 2px dashed #ccc;
+      border-radius: 6px;
+      padding: 20px;
+      text-align: center;
+      margin: 10px 0;
+      color: #666;
+      height: 250px;
+      width:100%;
+    }
+    button {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    button:hover {
+      background: #1e4fd6;
+    }
+    /* Tasks */
+    .tasks ul {
+      list-style: none;
+      margin-top: 10px;
+      height:200px;
+    }
+    .tasks li {
+      margin-bottom: 10px;
+    }
+    input[type="checkbox"] {
+      margin-right: 10px;
+    }
+    /* Notes */
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      resize: none;
+      height: 80px;
+      margin-bottom: 10px;
+      height : 200px;
+    }
+   @media (max-width: 1024px) {
+  .main {
+    flex-direction: column;
+    text-align: center;
+    width:500px;
+  }
+
+  .navbar ul {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media (max-width: 500px) {
+  .navbar ul{
+    gap: 0px;
+    align-items: right;
+   flex-direction: column;
+  }
+
+  .main-text {
+    font-size: 1.5rem;
+  }
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    width: 500px;
+    gap:10px;
+  }
+  .container {
+    flex-direction: column;
+  }
+}
