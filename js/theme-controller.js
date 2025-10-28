@@ -24,7 +24,10 @@ class ThemeController {
         // Update any theme toggle buttons if they exist
         const toggleBtns = document.querySelectorAll('.theme-toggle');
         toggleBtns.forEach(btn => {
-            btn.setAttribute('aria-label', `Switch to ${this.theme === 'light' ? 'dark' : 'light'} mode`);
+            btn.setAttribute(
+                'aria-label',
+                `Switch to ${this.theme === 'light' ? 'dark' : 'light'} mode`
+            );
         });
     }
 
@@ -35,3 +38,6 @@ class ThemeController {
 
 // Create a global instance
 const themeController = new ThemeController();
+
+
+

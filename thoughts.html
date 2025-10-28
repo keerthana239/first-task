@@ -63,26 +63,16 @@
       font-weight: bold;
       min-width: 100px;
     }
-
-    /* 🔹 Liquid Background Canvas */
-#liquid {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1; /* keep it behind everything */
-  background: linear-gradient(120deg, #2c3e50, #4ca1af);
-  filter: blur(50px) brightness(1.3);
-  opacity: 0.9;
-}
+    background-color-lavender {
+      background-color: #E6E6FA;
+    }
 
   </style>
 </head>
 <body>
   
 
- <canvas id="liquid"></canvas>
+
 
 
   <!-- User Profile Modal -->
@@ -105,31 +95,41 @@
 
   
   <!-- 🌐 Navbar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
-    <div class="container">
-      <a class="navbar-brand fw-bold text-primary" href="thoughts.html">
-        <img src="logo.jpg" alt="Logo" style="width:40px;" class="rounded-pill me-2">
-        Thoughts Blog
-      </a>
+<nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm sticky-top">
+  <div class="container-fluid"> <!-- ✅ use container-fluid for full width -->
+
+    <!-- Brand -->
+    <a class="navbar-brand fw-bold text-primary" href="thoughts.html">
+      <img src="logo.jpg" alt="Logo" style="width:40px;" class="rounded-pill me-2">
+      Thoughts Blog
+    </a>
+
+    <!-- 🟡 Right Section (Theme + Actions + Toggler) -->
+    <div class="d-flex align-items-center ms-auto">
+      <button class="btn-theme-toggle theme-toggle me-2" onclick="themeController.toggleTheme()">
+        🔆
+      </button>
+
+      <div id="navActions" class="d-flex align-items-center me-2"></div>
+
+      <!-- Navbar toggler always at far right -->
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item"><a class="nav-link active" href="thoughts.html">Thoughts</a></li>
-          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-       
-          <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-        <button class="btn-theme-toggle theme-toggle" onclick="themeController.toggleTheme()">
-    🔆
-</button>
-        </ul>
-      </div>
-      <!-- 👇 Login / Signup or Profile -->
-      <div id="navActions" class="d-flex ms-3"></div>
-     
     </div>
-  </nav>
+
+    <!-- Collapsible links -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item"><a class="nav-link active" href="thoughts.html">Thoughts</a></li>
+        <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
 
   <!-- 🧠 Thoughts Section -->
   <div class="container mt-4">
@@ -141,7 +141,7 @@
     <nav><ul id="pagination" class="pagination"></ul></nav>
   </div>
 
-  <footer class="bg-white text-center py-3 mt-5 shadow-sm">© 2025 Thoughts Blog ❤️🧿</footer>
+  <footer class="bg-white  py-3 mt-5 shadow-sm-9  border border-dark text-center ">© 2025 Thoughts Blog ❤️🧿</footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="constants.js"></script>
@@ -151,10 +151,12 @@
   // Example: fetch thoughts and initialize page
   updateNavbar();
 
+
   fetch(`${BASE_URL}/posts`)
     .then(res => res.json())
     .then(data => {
-      thoughts = data.slice(0, 30);
+      thoughts = data;
+      
       document.getElementById("spinner").classList.add("d-none");
       document.getElementById("thought-section").classList.remove("d-none");
       showPage();
@@ -179,7 +181,7 @@
   window.location.href = "index.html"; // ✅ back to home
 });
 </script>
-<script src="liquid.js"></script>
+
 <script src="js/theme-controller.js"></script>
 <link rel="stylesheet" href="css/theme.css">
 </body>

@@ -28,6 +28,8 @@
     --comment-bg: #1e1e1e;
     --comment-border: #2d2d2d;
     --link-color: #3d8bfd;
+    
+   
 }
 
 /* Base styles using theme variables */
@@ -112,4 +114,15 @@ a:hover {
 /* Transitions */
 * {
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+:root[data-theme="dark"] .navbar-toggler-icon {
+    filter: invert(1);
+}
+
+
+.about-section {
+  background-color: var(--background-secondary);
+  color: var(--text-primary);
+  transition: background-color 0.3s, color 0.3s;
 }
