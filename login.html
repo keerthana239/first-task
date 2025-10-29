@@ -2,8 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>🔐 Login | Thoughts Blog</title>
+  <link rel="icon" type="image/png" href="seo.png">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  
+  <script src="https://www.google.com/recaptcha/api.js?render=6Ld-y_orAAAAANepofhvfSTTwnQAi9ZZUBpYeG1D"></script>
+  
+  
   <style>
     body {
       background-color: #f8f9fa;
@@ -26,24 +32,34 @@
     }
 
 
-   
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+
+
+
+
 
   </style>
+  
 </head>
 <body>
-
-
-
- 
-
-
-
 
 
   <!-- Login Card -->
   <div class="card p-4 login-card">
     <h4 class="text-center mb-3 text-primary">Login to Thoughts Blog</h4>
     <div id="errorMsg" class="text-danger text-center mb-2"></div>
+
+
+<form action="captcha.php" method="POST"></form>
 
     <form id="loginForm">
       <div class="mb-3">
@@ -55,7 +71,16 @@
         <input type="password" id="password" class="form-control" required placeholder="Enter password">
       </div>
 
-      <button type="submit" id="loginBtn" class="btn btn-primary w-100 d-flex justify-content-center align-items-center">
+
+      <input type="hidden" name="g-recaptcha-response" id="g-recaptcha-response">
+
+      <!-- adding google recaptcha-->
+        <!--<div class="g-recaptcha" data-sitekey="6LcDuvorAAAAADB0AsviHnYQ9iwFQbANYGzpcsqG"></div>-->
+
+
+        
+
+      <button type="submit" id="loginBtn"  class="btn btn-primary w-100 d-flex justify-content-center align-items-center">
         <span id="btnText">Login</span>
         <div class="spinner-border text-light ms-2" role="status" id="spinner"></div>
       </button>
@@ -63,6 +88,25 @@
 
     <p class="mt-3 text-center">Don’t have an account? <a href="signup.html">Sign up</a></p>
   </div>
+
+
+
+
+
+
+<script>
+        grecaptcha.ready(function() {
+            grecaptcha.execute('YOUR_SITE_KEY', {action: 'submit'}).then(function(token) {
+                document.getElementById('g-recaptcha-response').value = token;
+            });
+        });
+    </script>
+
+
+
+
+
+
 
   <script>
     // 🔹 If already logged in → redirect immediately
@@ -121,6 +165,13 @@
  
 
 
+<!--catcha-->
+
+  <script>
+   function onSubmit(token) {
+     document.getElementById("demo-form").submit();
+   }
+ </script>
 
 </body>
 </html>
